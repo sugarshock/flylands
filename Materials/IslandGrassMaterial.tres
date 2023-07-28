@@ -1,0 +1,17 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d3pe3csnrrxye"]
+
+[ext_resource type="Shader" path="res://Islands/Materials/grass.gdshader" id="1_paort"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_paort")
+shader_parameter/character_position = Vector3(0, 0, 0)
+shader_parameter/character_radius = 3.0
+shader_parameter/character_push_strength = 1.0
+shader_parameter/color_top = Color(0.133333, 0.501961, 0.0588235, 1)
+shader_parameter/color_bottom = Color(0.0392157, 0.34902, 0.168627, 1)
+shader_parameter/deg_sway_pitch = 80.0
+shader_parameter/deg_sway_yaw = 45.0
+shader_parameter/wind_scale = 2.0
+shader_parameter/wind_speed = 0.5
+shader_parameter/wind_direction = Vector3(0, 0, -1)

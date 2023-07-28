@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b622i6x4j38ny"]
+
+[ext_resource type="MeshLibrary" uid="uid://buralogfbsdoq" path="res://MeshLibs/blockLibrary.tres" id="1_wydnk"]
+
+[node name="BlockIsland" type="GridMap"]
+mesh_library = ExtResource("1_wydnk")

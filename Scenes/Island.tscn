@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://batsruwjy42s8"]
+
+[ext_resource type="Material" uid="uid://d0or2uv33181s" path="res://Materials/BasicIsland.material" id="1_chkor"]
+[ext_resource type="Script" path="res://Scripts/Island.cs" id="2_bdnrr"]
+[ext_resource type="Shader" path="res://Materials/grass.gdshader" id="3_e60av"]
+[ext_resource type="Script" path="res://Scripts/Grass/terrain_grass.gd" id="4_1dw8y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_467ss"]
+render_priority = 0
+shader = ExtResource("3_e60av")
+shader_parameter/character_position = Vector3(0, 0, 0)
+shader_parameter/character_radius = 3.0
+shader_parameter/character_push_strength = 1.0
+shader_parameter/color_top = Color(0.290196, 0.521569, 0.0627451, 1)
+shader_parameter/color_bottom = Color(0.12549, 0.223529, 0.027451, 1)
+shader_parameter/deg_sway_pitch = 80.0
+shader_parameter/deg_sway_yaw = 45.0
+shader_parameter/wind_scale = 2.0
+shader_parameter/wind_speed = 0.5
+shader_parameter/wind_direction = Vector3(0, 0, -1)
+
+[node name="Island" type="MeshInstance3D"]
+material_override = ExtResource("1_chkor")
+script = ExtResource("2_bdnrr")
+
+[node name="Grass" type="MultiMeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_467ss")
+script = ExtResource("4_1dw8y")
+blade_width = Vector2(0.05, 0.1)
+blade_height = Vector2(0.4, 0.8)
+density = 50.0
