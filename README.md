@@ -6,6 +6,6 @@ Compatible with Godot 4.x (Mono Version).
 This ReadMe is work in progress.
 
 ## Consulted Resources (WIP):
-* https://www.redblobgames.com/maps/terrain-from-noise/
-* https://outpostengineer.com/barycentricShader.html
-* https://github.com/lonegamedev/godot_botw_grass
+* How to shape proper islands into heightmaps: https://www.redblobgames.com/maps/terrain-from-noise/
+* How I texture the island based on the voxel data: https://outpostengineer.com/barycentricShader.html
+* Grass is basically taken from https://github.com/lonegamedev/godot_botw_grass
