@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Flylands.Helpers;
 using Godot;
-using Islands.IslandGeneration;
 
-namespace MarchingCubesProject
+namespace Flylands.MarchingCubesProject
 {
 
     public enum TerrainType {Air, Dirt, Grass, Rock, Sand}
@@ -231,26 +231,6 @@ namespace MarchingCubesProject
             int z = (int) (w * (float) (Depth - 1));
 
             return new Vector3I(x,y,z);
-        }
-
-        public Texture3D GetTerrainSampler()
-        {
-            var images = new Godot.Collections.Array<Image>();
-            for(int z = 0; z < Depth; z++)
-            {
-                var image = Image.Create(Width, Height, false, Image.Format.Rgba8);
-                for(int y = 0; y < Height; y++)
-                {
-                    for(int x = 0; x < Width; x++)
-                    {
-                        image.SetPixel(x,y,MarchingCubesHelper.ColorFrom(Terrains[x,y,z]));
-                    }
-                }
-                images[z] = image;
-            }
-            var sampler = new ImageTexture3D();
-            sampler.Create(Image.Format.Rgba8, Width, Height, Depth, false, images);
-            return sampler;
         }
 
         /// <summary>

@@ -1,10 +1,10 @@
 using Godot;
 using System;
-using MarchingCubesProject;
+using Flylands.MarchingCubesProject;
 
-namespace Islands.IslandGeneration
+namespace Flylands.Helpers
 {
-     public static class IslandDataGenerator
+     public static class VoxelArrayHelper
      {
           public static VoxelArray GenerateVoxelArray(float[,] topHeightMap, float[,] bottomHeightMap, int height)
           {    

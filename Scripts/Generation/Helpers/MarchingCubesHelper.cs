@@ -1,17 +1,17 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using MarchingCubesProject;
+using Flylands.MarchingCubesProject;
 using System.Linq;
 
-namespace Islands.IslandGeneration
+namespace Flylands.Helpers
 {
      public static class MarchingCubesHelper
      {
-          public enum MARCHING_MODE {  CUBES, TETRAHEDRON };
+          public enum MARCHING_MODE {  CUBES };
 
 
-          public static Mesh GetMeshFrom(VoxelArray voxels, MARCHING_MODE mode = MARCHING_MODE.CUBES, bool smoothNormals = false, bool drawNormals = false)
+          public static Mesh GetMeshFrom(VoxelArray voxels, bool smoothNormals = false, bool drawNormals = false)
           {
                Marching marching = new MarchingCubes();
 
@@ -89,24 +89,6 @@ namespace Islands.IslandGeneration
                mesh.ClearSurfaces();
                mdt.CommitToSurface(mesh);
                return mesh;
-          }
-
-          public static Color ColorFrom(TerrainType terrainType)
-          {    
-               switch(terrainType)
-               {    
-                    case TerrainType.Grass:
-                         return Colors.Green;
-                    case TerrainType.Dirt:
-                         return Colors.Brown;
-                    case TerrainType.Sand:
-                         return Colors.SandyBrown;
-                    case TerrainType.Rock:
-                         return Colors.DarkGray;
-               }
-               
-               // all other terrains are supposed to be colored by the shader (depending on palette)
-               return new Color(0);
           }
      }
 }

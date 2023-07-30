@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using Islands.IslandGeneration;
+using Flylands.Helpers;
 using MarchingCubesProject;
 
 [Tool]
@@ -69,7 +69,7 @@ public partial class IslandBaseGenerator : Node3D
 
 		//var mesh = ArrayMeshHelper.CreateTerrainMesh(topHeightmap);
 		//var botMesh = ArrayMeshHelper.CreateTerrainMesh(bottomHeightMap);
-		var voxelArray = IslandDataGenerator.GenerateVoxelArray(topHeightmap, bottomHeightMap, Size.Y);
+		var voxelArray = VoxelArrayHelper.GenerateVoxelArray(topHeightmap, bottomHeightMap, Size.Y);
 		DrawBlocks(voxelArray);
 		var mesh = MarchingCubesHelper.GetMeshFrom(voxelArray, smoothNormals: SmoothNormals);
 

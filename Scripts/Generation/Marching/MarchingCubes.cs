@@ -1,11 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Islands.IslandGeneration;
 
 using Godot;
 
-namespace MarchingCubesProject
+namespace Flylands.MarchingCubesProject
 {
     public class MarchingCubes : Marching
     {

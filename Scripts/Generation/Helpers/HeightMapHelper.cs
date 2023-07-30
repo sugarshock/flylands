@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace Islands.IslandGeneration
+namespace Flylands.Helpers
 {    
 
      public static class HeightMapHelper

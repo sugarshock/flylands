@@ -3,7 +3,7 @@ using Godot;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace MarchingCubesProject
+namespace Flylands.MarchingCubesProject
 {
     public abstract class Marching
     {
