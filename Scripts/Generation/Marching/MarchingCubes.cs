@@ -4,7 +4,12 @@ using System.Collections.Generic;
 using Godot;
 
 namespace Flylands.MarchingCubesProject
-{
+{	
+	/// <summary>
+     /// This MarchingCubes algorithm was shamefully taken from https://github.com/Scrawk/Marching-Cubes
+	/// and heavily modified to fit my this specific application. Scrawk's original LICENSE.txt is enclosed.
+     /// Don't interface with this class directly, but use the MarchingCubesHelper.
+     /// </summary>
      public class MarchingCubes
      {
 

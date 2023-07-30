@@ -15,7 +15,9 @@ namespace Flylands.MarchingCubesProject
     
     [Tool]
     /// <summary>
-    /// A helper class to hold voxel data.
+    /// A helper class to hold voxel data, shamefully taken from https://github.com/Scrawk/Marching-Cubes
+	/// and partly modified to fit my this specific application.
+	/// Scrawk's original LICENSE.txt is enclosed.
     /// </summary>
     public partial class VoxelArray
     {   

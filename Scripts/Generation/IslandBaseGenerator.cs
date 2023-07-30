@@ -6,6 +6,9 @@ using Flylands.MarchingCubesProject;
 namespace Flylands 
 {
 	[Tool]
+	/// <summary>
+     /// Subgenerator to generate an Islands' base mesh based on a number of parameters.
+     /// </summary>
 	public partial class IslandBaseGenerator : Node3D
 	{	
 		[Export]
@@ -38,9 +41,6 @@ namespace Flylands
 
 		[Export]
 		public float StretchFactor {get; set;} = 1f;
-
-		[Export]
-		public bool SmoothNormals {get; set;} = false;
 		
 
 		// Called when the node enters the scene tree for the first time.
@@ -54,31 +54,42 @@ namespace Flylands
 		{
 		}
 
+          /// <summary>
+          /// Generates an Islands' base mesh based on the given parameters. Returns the voxel data and the finished mesh.
+          /// </summary>
 		public (VoxelArray voxelArray, Mesh mesh) GenerateBase()
 		{	
+			// Generate the original heightmap.
 			var heightmap = HeightMapHelper.GenerateHeightmap(Size.X,Size.Z,Frequency,vOffset, Seed);
 
-			
+			// Apply a number of modifiers to create the top half of the island.
 			var topHeightmap = HeightMapHelper.Shape(heightmap, ShapeFactor, ShapeScale, "EUCLIDIAN2");
 			topHeightmap = HeightMapHelper.Errode(topHeightmap, ErrodingFactor);
-			topHeightmap = HeightMapHelper.Stepify(topHeightmap, Steps, false);
-			topHeightmap = HeightMapHelper.YScale(topHeightmap, vScale);
+			topHeightmap = HeightMapHelper.Stepify(topHeightmap, Steps);
+			topHeightmap = HeightMapHelper.HeightScale(topHeightmap, vScale);
 
 
+			// Apply modifiers and InvertAndStretch to create the bottom half.
 			var bottomHeightMap = HeightMapHelper.Errode(heightmap, ErrodingFactor * 2);
 			//bottomHeightMap = HeightMapHelper.Shape(bottomHeightMap, ShapeFactor/2, ShapeScale/2, "EUCLIDIAN2");
 			bottomHeightMap = HeightMapHelper.InvertAndStretch(bottomHeightMap, StretchFactor);
 
-			//var mesh = ArrayMeshHelper.CreateTerrainMesh(topHeightmap);
-			//var botMesh = ArrayMeshHelper.CreateTerrainMesh(bottomHeightMap);
+			// Generate the voxel data between the two halves. 
 			var voxelArray = VoxelArrayHelper.GenerateVoxelArray(topHeightmap, bottomHeightMap, Size.Y);
-			DrawBlocks(voxelArray);
-			var mesh = MarchingCubesHelper.GetMeshFrom(voxelArray, smoothNormals: SmoothNormals);
 
+			// Use MarchingCubes to generate an actual mesh from the voxel data.
+			var mesh = MarchingCubesHelper.GetMeshFrom(voxelArray);
+			
+			// Draw a debug island from minecraft blocks
+			DrawBlocks(voxelArray);
+
+			// Return tuple with the voxel data and the mesh representation.
 			return  (voxelArray, mesh);
 		}
 
-		
+		/// <summary>
+          /// Draws a minecraft-like block representation of the island for debugging.
+          /// </summary>
 		private void DrawBlocks(VoxelArray voxelArray)
 		{	
 			var voxels = voxelArray.Terrains;

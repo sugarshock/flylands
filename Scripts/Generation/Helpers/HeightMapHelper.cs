@@ -5,11 +5,18 @@ using System.Collections.Generic;
 namespace Flylands.Helpers
 {    
 
+     /// <summary>
+     /// A collection of methods to generate and modify heightmaps from noise. The heightmaps dictate the final shape of the islands.
+     /// Most of the functions are based on https://www.redblobgames.com/maps/terrain-from-noise/.
+     /// </summary>
      public static class HeightMapHelper
      {    
           public static readonly float EMPTY_VERTEX = -101f;
 
 
+          /// <summary>
+          /// Generates a heightmap from Simplex noise and the given parameters.
+          /// </summary>
           public static float[,] GenerateHeightmap(int width, int depth, float freq, float vOffset, int seed)
           {
                var noise = new FastNoiseLite();
@@ -40,6 +47,9 @@ namespace Flylands.Helpers
           }
 
 
+          /// <summary>
+          /// Tries to apply an more pronounced island shape to the heightmap.
+          /// </summary>
           public static float[,] Shape(float[,] heightmap, float blendFactor, float shapeScale, string type)
           {    
                var width = heightmap.GetLength(0);
@@ -54,7 +64,7 @@ namespace Flylands.Helpers
 
                          var distance = ManhattanDistance(nx, ny, 0, 0);
                          var elevation = (heightmap[x,y] + (1-distance)) * blendFactor;
-                         //GD.Print("X/Y:"+x+"/"+y + " NXNY:" +nx+"/"+ny + " Distance: " + distance + " Elevation: " + elevation);
+
                          map[x, y] = Mathf.Max(0, elevation);
                     }
                }
@@ -62,7 +72,10 @@ namespace Flylands.Helpers
                return map;
           }
 
-          public static float[,] Stepify(float[,] heightmap, int steps, bool smooth)
+          /// <summary>
+          /// Applies a number of steps to the heightmap.
+          /// </summary>
+          public static float[,] Stepify(float[,] heightmap, int steps)
           {
                var width = heightmap.GetLength(0);
                var depth = heightmap.GetLength(1);
@@ -79,6 +92,9 @@ namespace Flylands.Helpers
                return map;
           }
 
+          /// <summary>
+          /// Another implementation of Stepify, not sure if it works.
+          /// </summary>
           public static float[,] Stepify2(float[,] heightmap, float exponent)
           {
                var width = heightmap.GetLength(0);
@@ -113,6 +129,9 @@ namespace Flylands.Helpers
                return map;
           }
 
+          /// <summary>
+          /// Errodes a specific amount of voxels from the borders, use this to remove "mold seams".
+          /// </summary>
           public static float[,] Errode(float[,] heightmap, float amount)
           {
                var width = heightmap.GetLength(0);
@@ -133,7 +152,10 @@ namespace Flylands.Helpers
                return map;
           }
 
-          public static float[,] YScale(float[,] heightmap, float factor)
+          /// <summary>
+          /// Scales the height values of the heightmap.
+          /// </summary>
+          public static float[,] HeightScale(float[,] heightmap, float factor)
           {
                var width = heightmap.GetLength(0);
                var depth = heightmap.GetLength(1);
@@ -150,6 +172,10 @@ namespace Flylands.Helpers
                return map;
           }
 
+          /// <summary>
+          /// Mirrors the heightmap on the X-Y-plane (e.g. value 0.5 -> -0.5) and stretches it downwards.
+          /// Use this to create the bottom half of the heightmap.
+          /// </summary>
           public static float[,] InvertAndStretch(float[,] heightmap, float stretchFactor)
           {
                var depth = heightmap.GetLength(1);
@@ -173,64 +199,6 @@ namespace Flylands.Helpers
           }
 
 
-          public static float[,] GenerateTopHeightmap(int height, int width, float freq, float waterLevel = 0.15f, float vOffset = 0, float flatteningFactor = 0.5f)
-          {    
-               var noise = new FastNoiseLite();
-               noise.NoiseType = FastNoiseLite.NoiseTypeEnum.Simplex;
-               noise.Seed = 55;
-               noise.Frequency = freq;
-               
-               var map = new float[width, height];
-
-               for (int y = 0; y < height; y++) {
-                    for (int x = 0; x < width; x++) {      
-                         var nx = 2f*(float)x/(float)width - 1f;
-                         var ny = 2f*(float)y/(float)height - 1f;
-                         var distance = Euclidean2Distance(nx, ny);
-
-                         var value = noise.GetNoise2D((float) nx, (float) ny);
-                         var elevation = (1 - flatteningFactor) * value + (1-distance) * flatteningFactor;
-                         //elevation = Step(elevation, 12);
-                         //GD.Print(elevation);
-                         if(elevation < waterLevel || x == 0 || y == 0 || x == width-1 || y == height-1)
-                         {
-                              map[x, y] = 0f;
-                         } 
-                         else 
-                         {
-                              map[x, y] = elevation + vOffset;
-                         }
-
-                    }
-               }
-
-               return map;
-          }
-
-          public static float[,] GenerateBottomHeightmap(float[,] topHeightMap, float distortionFactor)
-          {    
-               var depth = topHeightMap.GetLength(1);
-               var width = topHeightMap.GetLength(0);
-
-               var bottomHeightMap = new float[width, depth];
-
-               for (int x = 0; x < width; x++)
-               {
-                    for (int z = 0; z < depth; z++)
-                    {    
-                         try{
-                              var y = -topHeightMap[x, z] * distortionFactor;
-                              var value = (float) 2f * (0.5f - Mathf.Abs(0.5f - y));
-                              bottomHeightMap[x,z] = (float) value;
-                         } catch (IndexOutOfRangeException e) {
-                              GD.Print("Error when accessing " + x+"/"+z + "of top.");
-                         }
-                         
-                         
-                    }
-               }
-               return bottomHeightMap;
-          }
 
           public static float SquareBumpDistance(float x, float y)
           {    

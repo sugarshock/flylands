@@ -3,9 +3,15 @@ using System;
 using Flylands.MarchingCubesProject;
 
 namespace Flylands.Helpers
-{
+{    
+     /// <summary>
+     /// Collection of methods to generate a VoxelArray from two heightmaps and populate it with terrain data.
+     /// </summary>
      public static class VoxelArrayHelper
      {
+          /// <summary>
+          /// Exactly what is says. Has to be split up, find smarter ways to distribute terrain types.
+          /// </summary>
           public static VoxelArray GenerateVoxelArray(float[,] topHeightMap, float[,] bottomHeightMap, int height)
           {    
                if(topHeightMap.GetLength(0) != bottomHeightMap.GetLength(0) || topHeightMap.GetLength(1) != bottomHeightMap.GetLength(1))

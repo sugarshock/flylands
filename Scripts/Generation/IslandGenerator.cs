@@ -8,6 +8,9 @@ namespace Flylands
 	{	
 		
 		[Export]
+		/// <summary>
+		/// Used as a "generate" button in the inspector.
+		/// </summary>
 		public bool Generate {get => false; set => GenerateIsland();}
 
 		[Export]
@@ -17,6 +20,9 @@ namespace Flylands
 		public String FileName {get; set;} = "Island";
 
 		[Export]
+		/// <summary>
+		/// Used as a "save" button in the inspector.
+		/// </summary>
 		public bool Save {get => false; set => SaveCurrentToScene();}
 
 		private Island island;

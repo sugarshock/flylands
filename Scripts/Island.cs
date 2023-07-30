@@ -71,7 +71,7 @@ namespace Flylands
 		/// Rebuild the mesh based on the current Voxels data. Performance not suitable for real-time application yet. 
 		/// </summary>
 		public void RefreshMesh(){
-			this.Mesh = MarchingCubesHelper.GetMeshFrom(Voxels, smoothNormals: true);
+			this.Mesh = MarchingCubesHelper.GetMeshFrom(Voxels);
 			GetNode("Grass").Set("mesh", Mesh);
 		}
 	}
