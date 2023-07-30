@@ -6,12 +6,17 @@ using Godot;
 namespace Flylands.MarchingCubesProject
 {
 
+    /// <summary>
+    /// Enumeration of possible terrain types for the voxels. Extends according to your own needs.
+    /// </summary>
     public enum TerrainType {Air, Dirt, Grass, Rock, Sand}
+
+
+    
+    [Tool]
     /// <summary>
     /// A helper class to hold voxel data.
     /// </summary>
-    
-    [Tool]
     public partial class VoxelArray
     {   
 

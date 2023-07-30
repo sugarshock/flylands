@@ -1,8 +1,8 @@
 @tool
 extends MultiMeshInstance3D
 
-const MeshFactory = preload("res://Islands/Scripts/Grass/mesh_factory.gd")
-const GrassFactory = preload("res://Islands/Scripts/Grass/grass_factory.gd")
+const MeshFactory = preload("res://Scripts/Grass/mesh_factory.gd")
+const GrassFactory = preload("res://Scripts/Grass/grass_factory.gd")
 
 @export var blade_width = Vector2(0.01, 0.02) : set = set_blade_width
 @export var blade_height = Vector2(0.04, 0.08) : set = set_blade_height

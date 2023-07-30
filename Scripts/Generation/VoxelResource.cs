@@ -1,6 +1,6 @@
 using System;
 using Godot;
-using MarchingCubesProject;
+using Flylands.MarchingCubesProject;
      
 [Tool]
 /// <summary>

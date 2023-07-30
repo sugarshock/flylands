@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-namespace Skies.Islands.Generation
+namespace Flylands
 {
 	[Tool]
 	public partial class IslandGenerator : Node3D
@@ -19,7 +19,6 @@ namespace Skies.Islands.Generation
 		[Export]
 		public bool Save {get => false; set => SaveCurrentToScene();}
 
-		private PackedScene ISLAND_PACK;
 		private Island island;
 		private IslandBaseGenerator baseGenerator;
 
@@ -27,7 +26,6 @@ namespace Skies.Islands.Generation
 		
 		public override void _Ready()
 		{	
-			ISLAND_PACK = ResourceLoader.Load<PackedScene>("res://Islands/Scenes/Island.tscn");
 			GenerateIsland();
 		}
 
@@ -37,7 +35,8 @@ namespace Skies.Islands.Generation
 		public void GenerateIsland()
 		{	
 			Clean();
-
+			
+			PackedScene ISLAND_PACK = ResourceLoader.Load<PackedScene>("res://Scenes/Island.tscn");
 			island = ISLAND_PACK.Instantiate<Island>();
 			AddChild(island);
 			

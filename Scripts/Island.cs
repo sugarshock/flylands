@@ -1,9 +1,9 @@
 using Godot;
 using System;
-using MarchingCubesProject;
-using Islands.IslandGeneration;
+using Flylands.MarchingCubesProject;
+using Flylands.Helpers;
 
-namespace Skies.Islands
+namespace Flylands
 {
 	[Tool]
 	public partial class Island : MeshInstance3D

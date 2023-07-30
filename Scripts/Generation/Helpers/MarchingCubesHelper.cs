@@ -13,7 +13,7 @@ namespace Flylands.Helpers
 
           public static Mesh GetMeshFrom(VoxelArray voxels, bool smoothNormals = false, bool drawNormals = false)
           {
-               Marching marching = new MarchingCubes();
+               MarchingCubes marching = new MarchingCubes();
 
                //Surface is the value that represents the surface of mesh
                //For example the perlin noise has a range of -1 to 1 so the mid point is where we want the surface to cut through.
