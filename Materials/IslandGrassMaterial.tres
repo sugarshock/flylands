@@ -1,10 +1,10 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://d3pe3csnrrxye"]
 
-[ext_resource type="Shader" path="res://Islands/Materials/grass.gdshader" id="1_paort"]
+[ext_resource type="Shader" path="res://Materials/grass.gdshader" id="1_bipea"]
 
 [resource]
 render_priority = 0
-shader = ExtResource("1_paort")
+shader = ExtResource("1_bipea")
 shader_parameter/character_position = Vector3(0, 0, 0)
 shader_parameter/character_radius = 3.0
 shader_parameter/character_push_strength = 1.0

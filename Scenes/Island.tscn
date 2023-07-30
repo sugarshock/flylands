@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://batsruwjy42s8"]
+[gd_scene load_steps=5 format=3 uid="uid://batsruwjy42s8"]
 
 [ext_resource type="Material" uid="uid://d0or2uv33181s" path="res://Materials/BasicIsland.material" id="1_chkor"]
 [ext_resource type="Script" path="res://Scripts/Island.cs" id="2_bdnrr"]
+[ext_resource type="Material" uid="uid://d3pe3csnrrxye" path="res://Materials/IslandGrassMaterial.tres" id="3_w6tcg"]
 [ext_resource type="Script" path="res://Scripts/Grass/terrain_grass.gd" id="4_1dw8y"]
 
 [node name="Island" type="MeshInstance3D"]
@@ -9,7 +10,7 @@ material_override = ExtResource("1_chkor")
 script = ExtResource("2_bdnrr")
 
 [node name="Grass" type="MultiMeshInstance3D" parent="."]
-material_override = ExtResource("1_chkor")
+material_override = ExtResource("3_w6tcg")
 script = ExtResource("4_1dw8y")
 blade_width = Vector2(0.05, 0.1)
 blade_height = Vector2(0.4, 0.8)
