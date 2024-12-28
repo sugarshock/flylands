@@ -3,7 +3,9 @@ An extensible generator for floating island in the Godot game engine, written in
 
 Compatible with Godot 4.x (Mono Version).
 
-![Video demonstration](./Media/flylands_1.mp4)
+
+https://github.com/user-attachments/assets/7de2e212-56d0-4753-9237-918d7f49d700
+
 
 ## How To Use:
 * Open IslandGenerator.tscn in the editor
