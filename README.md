@@ -3,7 +3,7 @@ An extensible generator for floating island in the Godot game engine, written in
 
 Compatible with Godot 4.x (Mono Version).
 
-This ReadMe is work in progress.
+![Video demonstration](./Media/flylands_1.mp4)
 
 ## How To Use:
 * Open IslandGenerator.tscn in the editor
@@ -15,8 +15,13 @@ This ReadMe is work in progress.
 
 Alternatively: Instantiate and interface the IslandGenerator.tscn in code to generate islands at runtime.
 
+## What To Expect
+![image demonstration](./Media/flylands_1.webp)
+![image demonstration](./Media/flylands_2.webp)
+![image demonstration](./Media/flylands_3.webp)
 
-## Consulted Resources (WIP):
+
+## Consulted Resources:
 * How to shape proper islands into heightmaps: https://www.redblobgames.com/maps/terrain-from-noise/
 * How I texture the island based on the voxel data: https://outpostengineer.com/barycentricShader.html
 * Grass is basically taken from https://github.com/lonegamedev/godot_botw_grass
